@@ -49,6 +49,10 @@ public class MainController {
             textId = "1";
         }
         Text text = titleService.querySpecificContent(Integer.valueOf(textId));
+        if(null == text){
+            text = new Text();
+            text.setContent("暂无资源");
+        }
 
         request.setAttribute("context",text);
 
