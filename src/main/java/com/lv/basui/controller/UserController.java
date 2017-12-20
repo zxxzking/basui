@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller(value = "/userInfo")
+@Controller
+@RequestMapping(value = "/userInfo")
 public class UserController {
 
     private Logger log = LoggerFactory.getLogger(UserController.class);
@@ -82,7 +83,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "login")
-    @ResponseBody
+    // @ResponseBody
     public String userLogin(HttpServletRequest request,HttpServletResponse response){
         JsonResponse jsonResponse = null;
         Map map = new HashMap<String,Object>();
@@ -97,6 +98,7 @@ public class UserController {
             jsonResponse = JsonResponse.buildFailure(checkDto.getCode(),checkDto.getMsg());
             return jsonResponse.toJsonString();
         }
-        return null;
+        request.getSession().setAttribute("user",checkDto.getUser());
+        return request.getPathInfo();
     }
 }

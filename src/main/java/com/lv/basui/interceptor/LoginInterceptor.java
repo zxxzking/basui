@@ -23,7 +23,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         //此方法用于遍历session中所有的属性
         Enumeration<String> attributeNames = session.getAttributeNames();
         if(null == user){
-            response.sendRedirect("toLogin");
+            response.reset();
+            response.sendRedirect("/toLogin");
             return true;
         }
 

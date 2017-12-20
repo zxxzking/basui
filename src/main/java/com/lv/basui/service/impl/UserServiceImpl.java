@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
             dto.setCode("1002");
             return dto;
         }
-
+        dto.setUser(user);
         return dto;
     }
 
