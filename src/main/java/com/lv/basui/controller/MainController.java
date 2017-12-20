@@ -22,16 +22,18 @@ public class MainController {
     @RequestMapping(value = "/")
     private String index(){
 
-        return "redirect:/index";
-    }
-
-    @RequestMapping("index")
-    private String toIndex(){
-
-
         return "index";
     }
 
+    @RequestMapping(value = "/toLogin")
+    public String toLogin(){
+        return "login";
+    }
+
+    @RequestMapping(value = "toRegister")
+    public String toRegister(){
+        return "register";
+    }
 
     @RequestMapping(value = "/title")
     public String titleIndex(HttpServletRequest request, HttpServletResponse response){
