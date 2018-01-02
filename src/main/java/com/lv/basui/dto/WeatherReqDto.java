@@ -9,6 +9,8 @@ public class WeatherReqDto {
     private String city;
     private String appkey;
 
+
+
     public String getCity() {
         return city;
     }
