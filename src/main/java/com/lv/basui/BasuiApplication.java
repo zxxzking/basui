@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-// @EnableTransactionManagement // 启注解事务管理
+@EnableTransactionManagement // 启注解事务管理
 public class BasuiApplication {
 
 	public static void main(String[] args) {

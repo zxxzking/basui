@@ -91,7 +91,7 @@ public class MailUtils {
         // 5. Content: 邮件正文（可以使用html标签）
         message.setContent(dto.getContent(), "text/html;charset=UTF-8");
 
-        // 6. 设置发件时间
+        // 6. 设置发件时间 (立即发送)
         message.setSentDate(new Date());
 
         // 7. 保存设置
