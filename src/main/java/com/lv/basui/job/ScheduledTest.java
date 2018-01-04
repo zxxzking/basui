@@ -2,33 +2,32 @@ package com.lv.basui.job;
 
 import com.lv.basui.constants.Constants;
 import com.lv.basui.dto.MailDto;
+import com.lv.basui.entity.RemainingDays;
+import com.lv.basui.service.JobService;
 import com.lv.basui.utils.MailUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+
+import java.text.MessageFormat;
 
 
 public class ScheduledTest implements SchedulingConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(ScheduledTest.class);
 
-    private final String cron1="";
-
-    @Scheduled(cron="0/5 * * * * ?")
-    public void executeUploadTask() {
-        // 间隔1分钟,执行工单上传任务
-        Thread current = Thread.currentThread();
-        System.out.println("定时任务2:"+current.getId());
-        logger.info("ScheduledTest.executeUploadTask 定时任务2:"+current.getId() + ",name:"+current.getName());
-
-    }
+    @Autowired
+    private JobService jobService;
 
     @Scheduled(cron="0 0 8 * * ?")
     public void sendMail(){
+        RemainingDays days = jobService.getdays(Constants.DAYS_TYPE.TYPE_1001);
+        String content = MessageFormat.format(days.getDescription(),days.getDays());
         MailDto dto = new MailDto();
         MailUtils utils = new MailUtils();
-        dto.setContent("hahaha");
+        dto.setContent(content);
         dto.setFromPerson("zxxz");
         dto.setToPerson("亲爱的用户");
         dto.setTargetMail("lvquan@paicaifu.com");
