@@ -8,13 +8,17 @@ import com.lv.basui.utils.MailUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 
 
+@Component
+@EnableScheduling
 public class ScheduledTest implements SchedulingConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(ScheduledTest.class);
 
