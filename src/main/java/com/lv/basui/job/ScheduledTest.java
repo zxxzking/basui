@@ -41,6 +41,7 @@ public class ScheduledTest implements SchedulingConfigurer {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
+        jobService.updateDaysMsg(days);
     }
 
     @Override

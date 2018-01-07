@@ -3,6 +3,7 @@ package com.lv.basui;
 import com.lv.basui.constants.Constants;
 import com.lv.basui.controller.MainController;
 import com.lv.basui.entity.RemainingDays;
+import com.lv.basui.job.ScheduledTest;
 import com.lv.basui.service.JobService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,15 +20,15 @@ public class BasuiApplicationTests {
 	private MainController controller;
 
 	@Autowired
+	private ScheduledTest test;
+
+	@Autowired
 	private JobService jobService;
 
 	@Test
 	public void contextLoads() {
 
-		RemainingDays getdays = jobService.getdays(Constants.DAYS_TYPE.TYPE_1001);
-
-		int i = jobService.updateDaysMsg(getdays);
-		System.out.println(i);
+		test.sendMail();
 	}
 
 }
