@@ -30,6 +30,12 @@ public class TitleDaoImpl implements TitleDao {
         return text;
     }
 
+    @Override
+    public Title queryTitle(int id){
+        String sql = "select * from title where id =?";
+        return dbHelper.queryForObject(sql,Title.class,id);
+    }
+
 
 
 

@@ -1,6 +1,7 @@
 package com.lv.basui.entity;
 
 import com.denghb.dbhelper.annotation.Column;
+import com.denghb.dbhelper.annotation.Id;
 import com.denghb.dbhelper.annotation.Table;
 
 import java.sql.Timestamp;
@@ -10,6 +11,7 @@ import java.sql.Timestamp;
 public class Title {
 
     @Column(name = "id")
+    @Id
     private int id;
 
     @Column(name = "title")

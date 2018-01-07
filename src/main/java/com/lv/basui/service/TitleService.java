@@ -12,4 +12,6 @@ public interface TitleService {
     List<Title> listTitle();
 
     Text querySpecificContent(int titleId);
+
+    Title getTitle(int titleId);
 }

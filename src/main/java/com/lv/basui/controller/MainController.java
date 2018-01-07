@@ -51,6 +51,8 @@ public class MainController {
             textId = "1";
         }
         Text text = titleService.querySpecificContent(Integer.valueOf(textId));
+        Title title = titleService.getTitle(Integer.valueOf(textId));
+        request.setAttribute("title",title);
         if(null == text){
             text = new Text();
             text.setContent("暂无资源");

@@ -42,4 +42,9 @@ public class TitleServiceImpl implements TitleService {
         return titleDao.queryText(titleId);
     }
 
+    @Override
+    public Title getTitle(int titleId){
+        return titleDao.queryTitle(titleId);
+    }
+
 }

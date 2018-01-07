@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link href="/static/css/style1.css" type="text/css" rel="stylesheet" />
+    <link href="/static/css/base.css" type="text/css" rel="stylesheet" />
+    <script src="/static/js/jquery-2.1.0.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/script.js"></script>
+    <title th:text="${title.title}"></title>
 </head>
 <body>
-    <p th:text="${context.content}">Welcome</p>
 
+    <header>
+        <div class="logo">
+            <img src="/static/images/logo.jpg" />
+        </div>
+        <div class="nav" id="nav"><input class="nav_anniu fr" type="button" /></div>
+    </header>
+
+    <div class="find">
+        <input class="find_text fl" value="" id="txtSearch" /><input id="btnSearch" type="button" value="搜" class="find_anniu fl" /></div>
+
+    <div class="menu" id="menu">
+        <ul>
+            <li>
+                <a href="/welcome">返回上一级</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="content_article">
+            <div class="content_article_title">
+                <section>
+                    <h1 th:text="${title.title}"></h1>
+                </section>
+            </div>
+            <div class="content_article_con">
+                <section>
+                    <p th:text="${context.content}">Welcome</p>
+                </section>
+            </div>
+        </div>
+    </div>
 
 </body>
 
