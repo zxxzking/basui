@@ -21,7 +21,7 @@ header{height:50px; position:relative; background:url(../images/heard_bg.jpg) re
 .list_title a{color:#333; }
 .list_con{padding:5px 10px; color:#333; line-height:20px; overflow:hidden;}
 .list_con a{color:#333;}
-.list_jia{background:url(../images/jia_icon.png) no-repeat; width:50px; height:50px; line-height:70px; text-align:center; color:#333; margin:10px 10px 0px 10px;}
+.list_jia{background:#d8e5f2 no-repeat; width:50px; height:50px; line-height:25px; text-align:center; color:#333; margin:10px 10px 10px 10px;border-radius:5px 5px 5px 5px;}
 .list_bottom,.content_bottom{height:28px; background:url(../images/list_bottom.jpg) repeat-x; border-top:1px solid #d0dae6; line-height:28px; color:#4a6785; padding:0 10px; -moz-border-radius:0px 0px 10px 10px; -webkit-border-radius:0px 0px 10px 10px; border-radius:0px 0px 10px 10px;}
 .list_bottom a{display:block; background:url(../images/list_bottom_icon.png) no-repeat right center;}
 
