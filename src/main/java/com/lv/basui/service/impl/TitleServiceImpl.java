@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -21,6 +22,19 @@ public class TitleServiceImpl implements TitleService {
     @Override
     public List<Title> listTitle(){
 
+
+        List<Title> list = titleDao.queryTitleList();
+
+        for (Title title:list) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String newDate = format.format(title.getInserttime());
+
+            String[] split = newDate.split(" ")[0].split("-");
+            newDate = split[1]+"-"+split[2];
+            title.setPublishDate(newDate);
+
+        }
+        System.out.println("aaa");
         return titleDao.queryTitleList();
 
     }

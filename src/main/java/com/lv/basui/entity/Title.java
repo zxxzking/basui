@@ -27,6 +27,41 @@ public class Title {
     @Column(name = "isactive")
     private Short isactive = 1;
 
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "publishDate")
+    private String publishDate;
+
+    @Column(name = "summary")
+    private String summary;
+
+
+    public String getSummary() {
+
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(String publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public int getId() {
         return id;
     }

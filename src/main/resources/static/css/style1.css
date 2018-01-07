@@ -1,0 +1,67 @@
+/* CSS Document */
+header{height:50px; position:relative; background:url(../images/heard_bg.jpg) repeat-x bottom #FFF;}
+.logo{width:200px; height:40px; left:10px; top:5px; position:absolute;}
+.logo images{width:200px; height:40px; }
+.nav{width:100px; height:50px; position:absolute;  right:10px;  cursor:pointer;}
+.nav_anniu{background:url(../images/menu_anniu.gif) no-repeat; width:56px; height:24px; margin-top:13px; cursor:pointer; border:0px; overflow:hidden;}
+.nav_anniu_hover{background:url(../images/menu_anniu_hover.gif) no-repeat;}
+
+.find{height:40px; background:#aec3da; padding:13px 10px 10px 10px;}
+.find_text{height:34px; border:1px solid #a5b6c7; width:85%;  background:#FFF; -moz-border-radius:5px 0px 0px 5px; -webkit-border-radius:5px 0px 0px 5px; border-radius:5px 0px 0px 5px; -moz-box-shadow: 0 0 2px 2px #a3b9d2; -webkit-box-shadow: 0 0 2px 2px#a3b9d2; box-shadow: 0 0 2px 2px #a3b9d2;}
+.find_anniu{ background:url(../images/find_anniu.gif) no-repeat; width:41px; height:36px; text-indent:-9999px; overflow:hidden; border:0; cursor:pointer; border-radius:5px 0px 0px 5px; -moz-box-shadow: 0 0 2px 2px #a3b9d2; -webkit-box-shadow: 0 0 2px 2px#a3b9d2; box-shadow: 0 0 2px 2px #a3b9d2;}
+
+
+.menu{background:#c5d5e6; padding:10px;  -moz-box-shadow: 0 0 2px 2px #a3b9d2; -webkit-box-shadow: 0 0 2px 2px#a3b9d2; box-shadow: 0 0 2px 2px #a3b9d2; display:none;}
+.menu li{background:url(../images/menu_li.jpg) repeat-x; height:34px; padding:0 10px; line-height:34px; border:1px solid #a5b6c7; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow: 0 0 1px 1px #a3b9d2; -webkit-box-shadow: 0 0 1px 1px #a3b9d2; box-shadow: 0 0 1px 1px #a3b9d2; margin-bottom:10px; font-weight:600; font-size:14px;}
+.menu li a{background:url(../images/menu_li_icon.png) no-repeat right center; width:100%; display:block; color:#4a6785;}
+
+.list,.content{background:#FFF;  margin:20px 10px;  -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; -moz-box-shadow: 0 0 2px 2px #a3b9d2; -webkit-box-shadow: 0 0 2px 2px #a3b9d2; box-shadow: 0 0 2px 2px #a3b9d2;}
+.list_title_box{overflow:hidden;}
+.list_title{ padding:10px 10px 0px 0px;  line-height:20px; color:#333; overflow:hidden;}
+.list_title a{color:#333; }
+.list_con{padding:5px 10px; color:#333; line-height:20px; overflow:hidden;}
+.list_con a{color:#333;}
+.list_jia{background:url(../images/jia_icon.png) no-repeat; width:50px; height:50px; line-height:70px; text-align:center; color:#333; margin:10px 10px 0px 10px;}
+.list_bottom,.content_bottom{height:28px; background:url(../images/list_bottom.jpg) repeat-x; border-top:1px solid #d0dae6; line-height:28px; color:#4a6785; padding:0 10px; -moz-border-radius:0px 0px 10px 10px; -webkit-border-radius:0px 0px 10px 10px; border-radius:0px 0px 10px 10px;}
+.list_bottom a{display:block; background:url(../images/list_bottom_icon.png) no-repeat right center;}
+
+.content_article,.content_table{line-height:20px; color:#333;}
+.content_article_title{text-align:center; padding:10px 20px;}
+.content_article_con{line-height:20px;padding:10px 20px;}
+
+.content_table{overflow:hidden;}
+.content_table table{width:100%; margin:10px;}
+.content_table table th{ width:60px; font-size:12px; padding:5px;}
+.content_table table td{padding:5px;}
+.content_table .table_text{width:30%;}
+.content_table .table_wenben{background:#FFF; padding:2px; border:1px solid #d8e5f2; height:50px; width:50%;}
+.content_table .table_yzm{width:60px; height:25px; margin-bottom:-5px; margin-left:5px;}
+
+.content_share{background:#f0f0f0; padding:10px; overflow:hidden;}
+
+.content_bottom{text-align:center; font-size:12px;}
+.content_bottom a{display:block; background:url(../images/fh_icon.png) no-repeat left center;}
+
+.more{height:50px; line-height:50px; font-weight:600; color:#4a6785; font-size:12px; text-align:center;}
+.more a{display:block;  color:#4a6785;}
+
+.pinlun{height:60px; line-height:60px; text-align:center;}
+.pinlun_anniu{ margin:auto; background:url(../images/pinlun_anniu.png) no-repeat; text-align:center; border:0px; cursor:pointer; width:127px; height:46px; line-height:46px; color:#4a6785;}
+.pinlun_anniu_icon{background:url(../images/pinlun_icon.png) no-repeat left center; padding-left:20px;}
+.pinlun_anniu_icon_hover{background:url(../images/pinlun_icon_hover.png) no-repeat left center; padding-left:20px;}
+
+.pinlun_con{background:#FFF;  margin:20px 10px; padding:20px;  -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; -moz-box-shadow: 0 0 2px 2px #a3b9d2; -webkit-box-shadow: 0 0 2px 2px #a3b9d2; box-shadow: 0 0 2px 2px #a3b9d2; display:none;}
+.pinlun_list{border-bottom:1px solid #c0cedd; margin-bottom:20px;  overflow:hidden;}
+.pinlun_list_images{width:42px;}
+.pinlun_list_images images{width:42px; line-height:42px;}
+.pinlun_list dt{text-align:left; height:25px; line-height:25px; overflow:hidden;}
+.pinlun_list dd{ line-height:20px;}
+.pinlun_hf{height:25px; line-height:25px; text-align:right;}
+.pinlun_more{color:#666;}
+
+.footer{height:50px; line-height:50px; color:#333; text-align:center;}
+.footer_icon{background:url(../images/fooder_icon.png) no-repeat left center; padding-left:15px;}
+
+.page{text-align:center; margin-top:23px; padding-top:23px; margin-bottom:30px; }
+.page a{padding:3px 10px; margin:5px; background:url(../images/page.jpg) repeat-x bottom; border:1px solid #a5b6c7;   -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;}
+.page a:hover{ background:url(../images/page_hover.jpg) repeat-x bottom; color:#FFF;}

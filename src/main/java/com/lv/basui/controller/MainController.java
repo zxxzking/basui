@@ -60,4 +60,13 @@ public class MainController {
 
         return "content";
     }
+
+    @RequestMapping(value = "welcome")
+    public String toWelcome(HttpServletRequest request, HttpServletResponse response){
+        List<Title> titles = titleService.listTitle();
+        request.setAttribute("titleList",titles);
+        return "welcome";
+    }
+
+
 }

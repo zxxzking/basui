@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="/static/css/base.css" type="text/css" rel="stylesheet" />
+    <link href="/static/css/style1.css" type="text/css" rel="stylesheet" />
+    <script src="/static/js/jquery-2.1.0.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/script.js"></script>
+
+    <title>welcome</title>
+</head>
+
+    <body>
+    <header>
+        <div class="logo">
+            <a href="mCategory.aspx@nodeid=0"><img src="/static/images/logo.jpg" /></a>
+        </div>
+        <div class="nav" id="nav"><input class="nav_anniu fr" type="button" /></div>
+    </header>
+
+    <div class="find">
+        <input class="find_text fl" value="" id="txtSearch" /><input id="btnSearch" type="button" value="搜" class="find_anniu fl" />
+    </div>
+
+    <!-- 首页导航菜单 -->
+    <div class="menu" id="menu">
+        <ul>
+
+            <li>
+                <a href="daliebiao.htm">天络介绍</a>
+            </li>
+            <li>
+                <a href="daliebiao.htm">产品与服务</a>
+            </li>
+            <li>
+                <a href="daliebiao.htm">信息中心</a>
+            </li>
+            <li>
+                <a href="daliebiao.htm">案例展示</a>
+            </li>
+            <li>
+                <a href="daliebiao.htm">人力资源</a>
+            </li>
+            <li>
+                <a href="daliebiao.htm">给我们留言</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class = "mainList">
+        <tr th:each = "titles:${titleList}">
+            <!--<td><a th:text="${titles.title}" href="/content" th:href="@{content(textId=${titles.id})}"/></td>-->
+
+            <div class="list">
+
+                <div class="list_title_box" >
+                    <div class="list_jia fl" style="width: auto">
+                        <a th:text="${titles.publishDate}"></a>
+                    </div>
+                    <div class="list_title">
+                        <section>
+                            <a href="/content" th:text="${titles.title}"></a>
+                        </section>
+                        <section>
+                            <a>作者：</a><a th:text="${titles.author}"></a>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="list_con">
+                    <section>
+                        <a href="/content" th:href="@{content(textId=${titles.id})}" th:text="${titles.summary}"><br /></a>
+                    </section>
+                </div>
+            </div>
+
+        </tr>
+    </div>
+
+
+
+
+</body>
+
+</html>
