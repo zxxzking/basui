@@ -35,14 +35,6 @@ public class MainController {
         return "register";
     }
 
-    @RequestMapping(value = "/title")
-    public String titleIndex(HttpServletRequest request, HttpServletResponse response){
-        List<Title> titles = titleService.listTitle();
-        request.setAttribute("titleList",titles);
-
-        return "title";
-    }
-
 
     @RequestMapping(value = "/content")
     public String queryContent(HttpServletRequest request, HttpServletResponse response){
