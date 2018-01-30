@@ -3,7 +3,7 @@ package com.lv.basui.dto;
 
 import javax.validation.constraints.NotNull;
 
-public class WeatherReqDto {
+public class WeatherReqDto{
 
     @NotNull(message = "not null")
     private String city;
@@ -26,4 +26,7 @@ public class WeatherReqDto {
     public void setAppkey(String appkey) {
         this.appkey = appkey;
     }
+
+
+
 }

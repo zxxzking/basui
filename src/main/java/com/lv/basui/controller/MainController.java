@@ -4,6 +4,8 @@ import com.lv.basui.entity.Text;
 import com.lv.basui.entity.Title;
 import com.lv.basui.service.TitleService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -11,17 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 public class MainController {
+
+    private Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private TitleService titleService;
 
     @RequestMapping(value = "/")
     private String index(){
-
         return "index";
     }
 

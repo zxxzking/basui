@@ -28,7 +28,7 @@ public class BasuiApplicationTests {
 	@Test
 	public void contextLoads() {
 
-		// test.sendMail();
+		test.sendMail();
 	}
 
 }

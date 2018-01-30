@@ -99,4 +99,14 @@ public class MailUtils {
 
         return message;
     }
+
+    public static void main(String[] args) throws Exception{
+        MailDto dto = new MailDto();
+        dto.setContent("111");
+        dto.setFromPerson("zxxz");
+        dto.setToPerson("亲爱的用户");
+        dto.setTargetMail("lvquan@paicaifu.com");
+        MailUtils.doSendMsg(dto);
+
+    }
 }
