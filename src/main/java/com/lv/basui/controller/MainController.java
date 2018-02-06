@@ -29,17 +29,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/toLogin")
-    public String toLogin(){
-        return "login";
-    }
-
-    @RequestMapping(value = "toRegister")
-    public String toRegister(){
-        return "register";
-    }
-
-
     @RequestMapping(value = "/content")
     public String queryContent(HttpServletRequest request, HttpServletResponse response){
         String textId = request.getParameter("textId");

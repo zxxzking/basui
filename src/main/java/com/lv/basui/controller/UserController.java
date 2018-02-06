@@ -83,7 +83,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "login")
-    // @ResponseBody
+    @ResponseBody
     public String userLogin(HttpServletRequest request,HttpServletResponse response){
         JsonResponse jsonResponse = null;
         Map map = new HashMap<String,Object>();
@@ -99,6 +99,7 @@ public class UserController {
             return jsonResponse.toJsonString();
         }
         request.getSession().setAttribute("user",checkDto.getUser());
-        return request.getPathInfo();
+        jsonResponse = JsonResponse.buildSuccess("0000","success");
+        return jsonResponse.toJsonString();
     }
 }

@@ -34,7 +34,7 @@ public class CrossDomainFilter implements Filter {
         }
         //获取请求的源
         String url = req.getHeader("Origin");
-        //logger.info("请求的源为："+ url);
+        // logger.info("请求的源为："+ url);
         resp.setHeader("Access-Control-Allow-Origin", url);
         resp.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
         resp.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");

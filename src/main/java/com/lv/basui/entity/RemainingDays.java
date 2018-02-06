@@ -5,6 +5,7 @@ import com.denghb.dbhelper.annotation.Column;
 import com.denghb.dbhelper.annotation.Table;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Table(name = "remaining_day")
 public class RemainingDays {
@@ -22,6 +23,9 @@ public class RemainingDays {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "target_date")
+    private Date targetDate;
+
     @Column(name = "inserttime")
     private Timestamp inserttime;
 
@@ -31,6 +35,13 @@ public class RemainingDays {
     @Column(name = "isactive")
     private Short isactive = 1;
 
+    public Date getTargetDate() {
+        return targetDate;
+    }
+
+    public void setTargetDate(Date targetDate) {
+        this.targetDate = targetDate;
+    }
 
     public Integer getId() {
         return id;
