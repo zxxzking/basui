@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/content")
+    @GetMapping(value = "/content")
     public String queryContent(HttpServletRequest request, HttpServletResponse response){
         String textId = request.getParameter("textId");
         if(StringUtils.isBlank(textId)){
@@ -48,7 +49,7 @@ public class MainController {
         return "content";
     }
 
-    @RequestMapping(value = "welcome")
+    @GetMapping(value = "welcome")
     public String toWelcome(HttpServletRequest request, HttpServletResponse response){
         List<Title> titles = titleService.listTitle();
         request.setAttribute("titleList",titles);

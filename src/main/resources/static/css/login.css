@@ -10,7 +10,46 @@ input {
 	margin-top: 15px;
 	background: rgba(45,45,45,.15);
 	border-radius: 4px;
+	min-height: 36px;
 }
+
+h3{
+	font-size: 25px;
+	background-color: #0D0D0D;
+	padding: 5px;
+	color: white;
+}
+
+.s_btn {
+	width: 100px;
+	height: 34px;
+	color: #fff;
+	letter-spacing: 1px;
+	background: #3385ff;
+	border-bottom: 1px solid #2d78f4;
+	outline: medium;
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 6px;
+}
+
+/*下面这三个是改变input中站位符的字体颜色*/
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+	color: #6E6E6E;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #6E6E6E;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #6E6E6E;
+}
+
+
 
 button{
 	margin-top: 15px;
