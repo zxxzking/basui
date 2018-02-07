@@ -18,12 +18,25 @@ public class User {
     private String passWord;
     @Column(name = "email")
     private String email;
+
+    @Column(name = "user_type")
+    private String userType;
+
     @Column(name = "inserttime")
     private java.sql.Timestamp inserttime;
     @Column(name = "updatetime")
     private java.sql.Timestamp updatetime;
     @Column(name = "isactive")
     private Short isactive = 1;
+
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public int getId() {
         return id;

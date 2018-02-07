@@ -64,9 +64,9 @@ button{
 	display: none;
 	position: absolute;
 	top: 83px;
-	right: 40px;
-	width: 19px;
-	height: 19px;
+	right: 25px;
+	width: 35px;
+	height: 35px;
 	background: #2d2d2d; /* browsers that don't support rgba */
 	background: rgba(5,5,5,.25);
 	/*这三个属性都是圆角 适配不通浏览器*/
@@ -77,9 +77,9 @@ button{
 
 .error span {
 	display: inline-block;
-	margin-left: 3px;
-	margin-top: -11px;
-	font-size: 20px;
+	margin-left: 5px;
+	margin-top: -6px;
+	font-size: 40px;
 	font-weight: 700;
 	line-height: 40px;
 	text-shadow: 0 1px 2px rgba(0,0,0,.1);

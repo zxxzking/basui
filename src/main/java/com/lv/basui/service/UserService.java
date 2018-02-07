@@ -12,7 +12,7 @@ public interface UserService {
      */
     boolean checkUserName(String userName);
 
-    boolean saveUser(User user);
+    boolean saveUser(User user) throws Exception;
 
-    CheckDto loginCheck(String userName, String password);
+    CheckDto loginCheck(String userName, String password) throws Exception;
 }

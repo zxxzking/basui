@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 
 public class WeatherReqDto{
 
-    @NotNull(message = "not null")
     private String city;
     private String appkey;
 

@@ -4,7 +4,7 @@ $(function(){
         var userName = $(this).val();
         var that = $(this);
         if(userName == null||userName == ''){
-            return;
+            return false;
         }
         $.ajax({
             type:"post",
@@ -14,8 +14,7 @@ $(function(){
                 userName:userName
             },
             success:function(res){
-                var result = jQuery.parseJSON(res);
-                var flag = result.result.flag;
+                var flag = res.data;
                 if(!flag){
                     $(".tip2").css("display","inline")
                 }else{
@@ -27,12 +26,13 @@ $(function(){
 
 
     $('#sub').click(function(){
+        clear();
         var username = $('.username').val();
         var password = $('.password').val();
         var password2 = $('.password2').val();
         if(username == '') {
             $('.error').fadeOut('fast', function(){
-                $(this).css('top', '15px');
+                $(this).css('top', '8%');
             });
             $('.error').fadeIn('fast', function(){
                 $(this).parent().find('.username').focus();
@@ -41,7 +41,7 @@ $(function(){
         }
         if(password == '') {
             $('.error').fadeOut('fast', function(){
-                $(this).css('top', '48px');
+                $(this).css('top', '33%');
             });
             $('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
@@ -50,7 +50,7 @@ $(function(){
         }
         if(password2 == '') {
             $('.error').fadeOut('fast', function(){
-                $(this).css('top', '84px');
+                $(this).css('top', '60%');
             });
             $('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password2').focus();
@@ -58,6 +58,7 @@ $(function(){
             return false;
         }
         if(password != password2){
+            $('.error').css('display','none');
             $('.tip').fadeOut('fast', function(){
                 $(this).css('display', 'inline');
             });
@@ -78,9 +79,6 @@ $(function(){
                 password:password
             },
             success:function(res){
-                alert(res)
-                res = JSON.parse(res);
-                console.log(res)
                 if(res.code == "0000"){
                     window.location.href = "/"
                 }else{
@@ -91,7 +89,11 @@ $(function(){
     });
 
 
-
+    function clear(){
+        $('.tip').css('display','none');
+        $('.tip2').css('display','none');
+        $('.error').css('display','none');
+    }
 
 
 

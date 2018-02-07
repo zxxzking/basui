@@ -6,7 +6,7 @@ $(function(){
         var password = $('.password').val();
         if(username == '') {
             $('.error').fadeOut('fast', function(){
-                $(this).css('top', '15px');
+                $(this).css('top', '9%');
             });
             $('.error').fadeIn('fast', function(){
                 $(this).parent().find('.username').focus();
@@ -15,7 +15,7 @@ $(function(){
         }
         if(password == '') {
             $('.error').fadeOut('fast', function(){
-                $(this).css('top', '48px');
+                $(this).css('top', '42%');
             });
             $('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
@@ -36,8 +36,6 @@ $(function(){
                 password:password
             },
             success:function(res){
-                res = JSON.parse(res);
-                console.log(res)
                 if(res.code == "0000"){
                     window.location.href = "/welcome"
                 }else{
@@ -48,10 +46,5 @@ $(function(){
 
 
     })
-
-
-
-
-
 
 })

@@ -24,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         Enumeration<String> attributeNames = session.getAttributeNames();
         if(null == user){
             response.reset();
-            response.sendRedirect("/toLogin");
+            response.sendRedirect("/static/pages/login.html");
             return true;
         }
 
