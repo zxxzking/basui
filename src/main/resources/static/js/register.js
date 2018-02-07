@@ -8,7 +8,7 @@ $(function(){
         }
         $.ajax({
             type:"post",
-            url:"http://localhost:9093/userInfo/checkUserName",
+            url:"/userInfo/checkUserName",
             async:true,
             data:{
                 userName:userName
