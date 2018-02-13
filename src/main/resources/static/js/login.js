@@ -37,6 +37,7 @@ $(function(){
             },
             success:function(res){
                 if(res.code == "0000"){
+                    sessionStorage.setItem("token",res.data);
                     window.location.href = "/welcome"
                 }else{
                     alert(res.msg);

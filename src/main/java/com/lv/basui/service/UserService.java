@@ -15,4 +15,8 @@ public interface UserService {
     boolean saveUser(User user) throws Exception;
 
     CheckDto loginCheck(String userName, String password) throws Exception;
+
+    User getUser(String userName);
+
+    User getUser(Long userId);
 }

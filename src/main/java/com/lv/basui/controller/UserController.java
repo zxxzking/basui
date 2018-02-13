@@ -3,15 +3,18 @@ package com.lv.basui.controller;
 import com.lv.basui.dto.CheckDto;
 import com.lv.basui.dto.ResultBean;
 import com.lv.basui.entity.User;
+import com.lv.basui.service.TokenService;
 import com.lv.basui.service.UserService;
 import com.lv.basui.utils.JsonResponse;
 import com.lv.basui.utils.SecurityUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -22,8 +25,11 @@ import java.util.Map;
 public class UserController {
 
     private Logger log = LoggerFactory.getLogger(UserController.class);
-    @Resource
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenService tokenService;
 
     /**
      * 校验用户名是否被占用
@@ -49,17 +55,22 @@ public class UserController {
         passWord = SecurityUtils.string2MD5(passWord);
         user.setPassWord(passWord);
         userService.saveUser(user);
+        User user1 = userService.getUser(userName);
+        String token = tokenService.createToken(Long.valueOf(user.getId()));
+        resultBean.setData(token);
         return resultBean;
     }
 
     @PostMapping(value = "/login")
     public ResultBean userLogin(@RequestParam(value = "username",required = true)String userName,
                                 @RequestParam(value = "password",required = true)String passWord,
-                            HttpServletRequest request)throws Exception{
+                            HttpServletRequest request,HttpServletResponse response)throws Exception{
         ResultBean resultBean = new ResultBean();
         Map map = new HashMap<String,Object>();
         CheckDto checkDto = userService.loginCheck(userName, passWord);
-        request.getSession().setAttribute("user",checkDto.getUser());
+        User user = checkDto.getUser();
+        String token = tokenService.createToken(Long.valueOf(user.getId()));
+        resultBean.setData(token);
         return resultBean;
     }
 }

@@ -80,6 +80,7 @@ $(function(){
             },
             success:function(res){
                 if(res.code == "0000"){
+                    sessionStorage.setItem("token",res.data);
                     window.location.href = "/"
                 }else{
                     alert(res.msg);

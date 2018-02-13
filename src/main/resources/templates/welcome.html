@@ -33,7 +33,6 @@
 
     <div class = "mainList">
         <tr th:each = "titles:${titleList}">
-            <!--<td><a th:text="${titles.title}" href="/content" th:href="@{content(textId=${titles.id})}"/></td>-->
 
             <div class="list">
 
@@ -44,7 +43,7 @@
                     </div>
                     <div class="list_title">
                         <section>
-                            <a href="/content" th:text="${titles.title}"></a>
+                            <a th:href="@{content(textId=${titles.id})}" th:text="${titles.title}"></a>
                         </section>
                         <section>
                             <a>作者：</a><a th:text="${titles.author}"></a>
@@ -54,7 +53,7 @@
 
                 <div class="list_con">
                     <section>
-                        <a href="/content" th:href="@{content(textId=${titles.id})}" th:text="${titles.summary}"><br /></a>
+                        <a th:href="@{content(textId=${titles.id})}" th:text="${titles.summary}"><br /></a>
                     </section>
                 </div>
             </div>

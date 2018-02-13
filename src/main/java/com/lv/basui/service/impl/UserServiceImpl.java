@@ -51,4 +51,20 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
+    @Override
+    public User getUser(String userName){
+        String sql = "select * from user where name = ? and isactive = '1'";
+
+
+        return dbHelper.queryForObject(sql,User.class,userName);
+    }
+
+    @Override
+    public User getUser(Long userId){
+        String sql = "select * from user where id = ? and isactive = '1'";
+
+
+        return dbHelper.queryForObject(sql,User.class,userId);
+    }
+
 }
