@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
         if(!b){
             throw new BaseException("1001","用户名已存在");
         }
-        return dbHelper.insert(user);
+
+        return userDao.saveUser(user);
     }
 
 

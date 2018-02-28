@@ -1,6 +1,7 @@
 package com.lv.basui.controller;
 
 import com.lv.basui.dto.CheckDto;
+import com.lv.basui.dto.LoginDto;
 import com.lv.basui.dto.ResultBean;
 import com.lv.basui.entity.User;
 import com.lv.basui.service.TokenService;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,6 +73,21 @@ public class UserController {
         User user = checkDto.getUser();
         String token = tokenService.createToken(Long.valueOf(user.getId()));
         resultBean.setData(token);
+        return resultBean;
+    }
+
+    @PostMapping(value = "/login1")
+    public ResultBean userLogin1(@Valid @RequestBody LoginDto dto,
+                                HttpServletRequest request,HttpServletResponse response)throws Exception{
+        ResultBean resultBean = new ResultBean();
+        Map map = new HashMap<String,Object>();
+        String userName = dto.getUsername();
+        String passWord = dto.getPassword();
+        CheckDto checkDto = userService.loginCheck(userName, passWord);
+        User user = checkDto.getUser();
+        String token = tokenService.createToken(Long.valueOf(user.getId()));
+        resultBean.setData(token);
+        System.out.println(token);
         return resultBean;
     }
 }

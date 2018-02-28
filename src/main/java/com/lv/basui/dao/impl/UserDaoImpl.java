@@ -27,4 +27,11 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         User user = dbHelper.queryForObject(sql, User.class, userName);
         return user;
     }
+
+    @Override
+    public boolean saveUser(User user){
+        Long id = generatorKey("user");
+        user.setId(id);
+        return dbHelper.insert(user);
+    }
 }
