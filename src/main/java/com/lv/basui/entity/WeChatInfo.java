@@ -14,6 +14,9 @@ CREATE TABLE `weChat_info` (
   `openId` varchar(50) DEFAULT NULL COMMENT 'openId',
   `nick_name` varchar(20) DEFAULT NULL COMMENT '昵称',
   `avatarUrl` varchar(20) DEFAULT NULL COMMENT '头像url',
+  `inserttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+  `updatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `isactive` tinyint(4) DEFAULT '1' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  <pre>
@@ -40,6 +43,18 @@ public class WeChatInfo implements java.io.Serializable {
 	/** 头像url */
 	@Column(name="avatarUrl")
 	private String avatarurl;
+	
+	/** 插入时间 */
+	@Column(name="inserttime")
+	private java.util.Date inserttime;
+	
+	/** 更新时间 */
+	@Column(name="updatetime")
+	private java.util.Date updatetime;
+	
+	/** 逻辑删除 */
+	@Column(name="isactive")
+	private Boolean isactive;
 	
 
 	public Long getId(){
@@ -74,6 +89,30 @@ public class WeChatInfo implements java.io.Serializable {
 		this.avatarurl = avatarurl;
 	}
 
+	public java.util.Date getInserttime(){
+		return inserttime;
+	}
+
+	public void setInserttime(java.util.Date inserttime){
+		this.inserttime = inserttime;
+	}
+
+	public java.util.Date getUpdatetime(){
+		return updatetime;
+	}
+
+	public void setUpdatetime(java.util.Date updatetime){
+		this.updatetime = updatetime;
+	}
+
+	public Boolean getIsactive(){
+		return isactive;
+	}
+
+	public void setIsactive(Boolean isactive){
+		this.isactive = isactive;
+	}
+
 	@Override
 	public String toString(){
 		StringBuffer str = new StringBuffer("WeChatInfo [");
@@ -91,6 +130,18 @@ public class WeChatInfo implements java.io.Serializable {
 		str.append(",");
 		str.append("avatarurl=\"");
 		str.append(avatarurl);
+		str.append("\"");
+		str.append(",");
+		str.append("inserttime=\"");
+		str.append(inserttime);
+		str.append("\"");
+		str.append(",");
+		str.append("updatetime=\"");
+		str.append(updatetime);
+		str.append("\"");
+		str.append(",");
+		str.append("isactive=\"");
+		str.append(isactive);
 		str.append("\"");
 		
 		str.append("]");
