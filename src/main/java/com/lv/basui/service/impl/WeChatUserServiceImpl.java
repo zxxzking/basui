@@ -32,6 +32,7 @@ public class WeChatUserServiceImpl implements WeChatUserService {
             userId = weChatUserDao.saveUserInfo(info);
 
         }else{
+            weChatUserDao.updateUserInfo(weChatInfo);
             userId = weChatInfo.getId();
         }
         String token = tokenService.createToken(userId);

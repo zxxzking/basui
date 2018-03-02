@@ -22,4 +22,9 @@ public class WeChatUserDaoImpl extends BaseDao implements WeChatUserDao {
         return id;
     }
 
+    @Override
+    public boolean updateUserInfo(WeChatInfo info){
+        return dbHelper.updateById(info);
+    }
+
 }

@@ -151,6 +151,13 @@
 		</dependency>
 
 
+		<!-- 生成二维码的 -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
 
 	</dependencies>
 

@@ -6,4 +6,6 @@ public interface WeChatUserDao {
     WeChatInfo isExist(String openId);
 
     Long saveUserInfo(WeChatInfo info);
+
+    boolean updateUserInfo(WeChatInfo info);
 }
