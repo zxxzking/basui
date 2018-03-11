@@ -22,10 +22,10 @@ public class ExceptionController {
             resultBean.setCode(e1.getCode());
             resultBean.setMsg(e1.getMsg());
         }else{
-
+            // 未知异常
             logger.error(e.getMessage(),e);
             resultBean.setCode("S1001");
-            resultBean.setMsg("服务器出错");
+            resultBean.setMsg("服务器出错！");
         }
 
         return resultBean;
