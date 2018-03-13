@@ -64,7 +64,7 @@ public class TokenServiceImpl implements TokenService {
         System.out.println(res/(3600*24*1000));
         int x = (int)(res/(3600*24*1000));
         System.out.println(x);*/
-        String s = ThreeDes.decryptThreeDESECB("tauEIDgZDj1xq31GUfl+LrSCWjsDQ5CDPyL0Q6gdGbOwo86XgmopjA==");
+        String s = ThreeDes.decryptThreeDESECB("e63YL6wbIlvKg0HXBRMmv6h5TtN6Yzsm+iyDgscgZpM=");
         String[] split = s.split(",");
         String userId = split[0];
         System.out.println(userId);

@@ -68,4 +68,10 @@ public class UserServiceImpl implements UserService {
         return dbHelper.queryForObject(sql,User.class,userId);
     }
 
+    public static void main(String[] args) {
+        char i = '1';
+        String s = String.valueOf(i);
+        System.out.println(Integer.valueOf(s));
+    }
+
 }

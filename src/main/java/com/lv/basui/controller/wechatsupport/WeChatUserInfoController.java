@@ -36,51 +36,5 @@ public class WeChatUserInfoController {
         return resultBean;
     }
 
-    /*@GetMapping(value = "a")
-    public String test(){
-        x++;
 
-
-        System.out.println("a: "+x);
-        return "Hello World  "+x+" a";
-    }
-
-    @GetMapping(value = "b")
-    public String test1(){
-        y++;
-        System.out.println("b: "+y);
-        return "Hello World  "+y+" b";
-    }*/
-
-    /*public static void main(String[] args) {
-        ExecutorService exec = Executors.newFixedThreadPool(100);
-        for (int i = 0; i < 1000; i++) {
-            exec.execute(new Runnable() {
-                public void run() {
-
-                    String res = HttpToolKit.doGet("http://192.168.65.138:8888/",null);
-//                    String res = HttpUtils.get("http://192.168.65.223:9093/wechat/b");
-                    System.out.println(res);
-
-                }
-            });
-            exec.execute(new Runnable() {
-                public void run() {
-                    String res = HttpToolKit.doGet("http://192.168.65.138:8888/2",null);
-
-//                    String res = HttpUtils.get("http://192.168.65.223:9093/wechat/a");
-                    System.out.println(res);
-
-                }
-            });
-        }
-*//*
-        try {
-            Thread.sleep(1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*//*
-        exec.shutdown();
-
-    }*/
 }
