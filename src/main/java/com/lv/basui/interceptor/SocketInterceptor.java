@@ -1,5 +1,9 @@
 package com.lv.basui.interceptor;
 
+import com.lv.basui.dto.SocketReceiveMsg;
+import com.lv.basui.dto.SocketResp;
+import com.lv.basui.dto.UserInfo;
+import com.lv.basui.utils.SocketMessageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.*;
@@ -14,27 +18,30 @@ public class SocketInterceptor implements WebSocketHandler {
 
     private static Map<String, WebSocketSession> sessions = new ConcurrentHashMap<String, WebSocketSession>();
 
-    private static Map<String, String> onlineUsers = new ConcurrentHashMap<String, String>();
+    private static Map<String, UserInfo> onlineUsers = new ConcurrentHashMap<String, UserInfo>();
 
 
     @Override
     public void afterConnectionEstablished(WebSocketSession webSocketSession) throws Exception {
+        log.info("socket链接已打开 id="+webSocketSession.getId());
+
         sessions.put(webSocketSession.getId(), webSocketSession);
+        // 打开连接时 创建当前活跃用户对象
+        UserInfo userInfo =  new UserInfo();
+        onlineUsers.put(webSocketSession.getId(),userInfo);
+
+        SocketResp resp = new SocketResp();
+        resp.setOnlineNum(sessions.size());
+
+        SocketMessageUtils.sendMessageToAll(resp,sessions);
     }
 
     @Override
     public void handleMessage(WebSocketSession webSocketSession, WebSocketMessage<?> webSocketMessage) throws Exception {
 
-        onlineUsers.put(webSocketMessage.getPayload().toString(),webSocketSession.getId());
+        Object payload =  webSocketMessage.getPayload();
+        System.out.println(payload.toString());
 
-        Iterator<String> iterator = sessions.keySet().iterator();
-        while (iterator.hasNext()){
-            String entry = iterator.next();
-            WebSocketSession session = sessions.get(entry);
-            session.sendMessage(new TextMessage(String.valueOf(sessions.size())));
-
-
-        }
 
     }
 
@@ -49,8 +56,13 @@ public class SocketInterceptor implements WebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus closeStatus) throws Exception {
-        System.out.println("afterConnectionClosed");
+        log.info("socket链接已关闭 id="+webSocketSession.getId());
         sessions.remove(webSocketSession.getId());
+
+        SocketResp resp = new SocketResp();
+        resp.setOnlineNum(sessions.size());
+
+        SocketMessageUtils.sendMessageToAll(resp,sessions);
     }
 
     @Override
