@@ -1,7 +1,12 @@
 package com.lv.basui.service.impl;
 
+import com.denghb.dbhelper.DbHelper;
 import com.lv.basui.dao.WeChatUserDao;
 import com.lv.basui.dto.EnumTest;
+import com.lv.basui.dto.MealDto;
+import com.lv.basui.dto.ResultBean;
+import com.lv.basui.entity.Laxi;
+import com.lv.basui.entity.Meal;
 import com.lv.basui.entity.WeChatInfo;
 import com.lv.basui.service.TokenService;
 import com.lv.basui.service.WeChatUserService;
@@ -25,6 +30,9 @@ public class WeChatUserServiceImpl implements WeChatUserService {
     @Autowired
     private WeChatUserDao weChatUserDao;
 
+    @Autowired
+    private DbHelper dbHelper;
+
 
     @Autowired
     private TokenService tokenService;
@@ -46,6 +54,74 @@ public class WeChatUserServiceImpl implements WeChatUserService {
 
         return token;
     }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public ResultBean saveMealInfo(ResultBean resultBean, String meal, String type, String userId){
+
+        Meal meals = weChatUserDao.queryUserMeal(Long.valueOf(userId), type);
+        if(null == meals){
+            meals = new Meal();
+            meals.setUserid(Long.valueOf(userId));
+            meals.setMeal(meal);
+            meals.setType(type);
+            dbHelper.insert(meals);
+        }else{
+            meals.setUserid(Long.valueOf(userId));
+            meals.setMeal(meal);
+            meals.setType(type);
+            dbHelper.updateById(meals);
+        }
+
+
+        return resultBean;
+    }
+
+
+    @Override
+    public MealDto queryTodayMeal(String userId){
+        MealDto dto = new MealDto();
+        List<Meal> meals = weChatUserDao.queryTodayMeal(Long.valueOf(userId));
+        for(Meal meal : meals){
+            if("0".equals(meal.getType())){
+                dto.setBreakfast(meal.getMeal());
+            }
+            if("1".equals(meal.getType())){
+                dto.setLunch(meal.getMeal());
+            }
+            if("2".equals(meal.getType())){
+                dto.setDinner(meal.getMeal());
+            }
+            if("3".equals(meal.getType())){
+                dto.setOther(meal.getMeal());
+            }
+        }
+
+        return dto;
+    }
+
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void recordLaxiStatus(String userId, String status){
+        Laxi laxi = weChatUserDao.queryUserLaxi(Long.valueOf(userId));
+        if(null == laxi){
+            laxi = new Laxi();
+            laxi.setUserid(Long.valueOf(userId));
+            laxi.setIslaxi(status);
+            dbHelper.insert(laxi);
+        }else{
+            laxi.setIslaxi(status);
+            dbHelper.updateById(laxi);
+        }
+
+
+    }
+
+
+
+
 
 
     public static String GetUrl(String inUrl){

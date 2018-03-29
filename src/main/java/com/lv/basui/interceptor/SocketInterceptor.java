@@ -1,18 +1,24 @@
 package com.lv.basui.interceptor;
 
+import com.denghb.dbhelper.DbHelper;
 import com.lv.basui.dto.SocketReceiveMsg;
 import com.lv.basui.dto.SocketResp;
 import com.lv.basui.dto.UserInfo;
+import com.lv.basui.utils.GsonUtils;
 import com.lv.basui.utils.SocketMessageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.*;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SocketInterceptor implements WebSocketHandler {
+
+    @Autowired
+    private DbHelper dbHelper;
 
     private Logger log = LoggerFactory.getLogger(SocketInterceptor.class);
 
@@ -29,7 +35,6 @@ public class SocketInterceptor implements WebSocketHandler {
         // 打开连接时 创建当前活跃用户对象
         UserInfo userInfo =  new UserInfo();
         onlineUsers.put(webSocketSession.getId(),userInfo);
-
         SocketResp resp = new SocketResp();
         resp.setOnlineNum(sessions.size());
 
@@ -39,9 +44,19 @@ public class SocketInterceptor implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession webSocketSession, WebSocketMessage<?> webSocketMessage) throws Exception {
 
+        log.info("接收到id为"+webSocketSession.getId()+"的消息");
         Object payload =  webSocketMessage.getPayload();
-        System.out.println(payload.toString());
+        SocketReceiveMsg receiveMsg = GsonUtils.fromJson(payload.toString(), SocketReceiveMsg.class);
+        UserInfo userInfo = onlineUsers.get(webSocketSession.getId());
+        userInfo.setAvatarUrl(receiveMsg.getAvatarUrl());
+        userInfo.setNickName(receiveMsg.getNickName());
 
+        Collection<UserInfo> values = onlineUsers.values();
+        List list = new ArrayList(values);
+        SocketResp<List> resp = new SocketResp<>();
+        resp.setMsgType("1");
+        resp.setData(list);
+        SocketMessageUtils.sendMessageToAll(resp,sessions);
 
     }
 
@@ -50,7 +65,7 @@ public class SocketInterceptor implements WebSocketHandler {
         log.debug("handleTransportError");
 
         sessions.remove(webSocketSession.getId());
-
+        onlineUsers.remove(webSocketSession.getId());
         log.error(throwable.getMessage(), throwable);
     }
 
@@ -58,7 +73,7 @@ public class SocketInterceptor implements WebSocketHandler {
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus closeStatus) throws Exception {
         log.info("socket链接已关闭 id="+webSocketSession.getId());
         sessions.remove(webSocketSession.getId());
-
+        onlineUsers.remove(webSocketSession.getId());
         SocketResp resp = new SocketResp();
         resp.setOnlineNum(sessions.size());
 
@@ -69,4 +84,10 @@ public class SocketInterceptor implements WebSocketHandler {
     public boolean supportsPartialMessages() {
         return false;
     }
+
+
+
+
+
+
 }

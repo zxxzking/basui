@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>websocket demo</title>
+</head>
+<body>
+see console
+<button id="click" onclick="send()">click</button>
+<script>
+
+
+    var ws = new WebSocket("ws://localhost:9093/zxxz-socket");
+
+    var dto = {};
+
+    dto["nickName"] = "hahaha"
+
+    ws.onopen = function(e) {
+        console.log("Connection open ...");
+
+    };
+    ws.onmessage = function(e) {
+        console.log( "Received Message: " + e.data);
+        // ws.close();
+    };
+    ws.onclose = function(e) {
+        console.log("Connection closed.");
+    };
+    ws.onerror = function(e) {
+        console.log("Connection closed.");
+    };
+
+    var but = document.getElementById("click");
+    function send() {
+        ws.send("{\"nickName\":\"Lyu.Q\",\"avatarUrl\":\"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIOxNrMk7mVLnAjmS8J9ROicSWReIKNuHfZhic7LJdAnX8nxcicAehJkVSib4rqFDdCo51uKvqbeGA1vg/0\",\"latitude\":31.22114,\"longitude\":121.54409}");
+    }
+
+
+</script>
+</body>
+</html>
