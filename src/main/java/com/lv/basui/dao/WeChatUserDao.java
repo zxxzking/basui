@@ -17,5 +17,8 @@ public interface WeChatUserDao {
 
     Laxi queryUserLaxi(Long userId);
 
-    List<Meal> queryTodayMeal(Long userId);
+
+    List<Meal> queryUserMealInfoList(Long userId);
+
+    Laxi queryLaxi(Long userId, String date);
 }

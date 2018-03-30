@@ -34,9 +34,9 @@ public class WeChatUserDaoImpl extends BaseDao implements WeChatUserDao {
 
     @Override
     public Meal queryUserMeal(Long userId,String mealType){
-        String sql = "select * from meal where userId = ? and type = ? and isactive = '1' and DATE_FORMAT(inserttime,'%Y-%m-%d') = current_date";
+        String sql = "select * from meal where userId = ? and isactive = '1' and DATE_FORMAT(inserttime,'%Y-%m-%d') = current_date";
 
-        return dbHelper.queryForObject(sql,Meal.class,userId,mealType);
+        return dbHelper.queryForObject(sql,Meal.class,userId);
 
 
     }
@@ -51,14 +51,17 @@ public class WeChatUserDaoImpl extends BaseDao implements WeChatUserDao {
 
 
     @Override
-    public List<Meal> queryTodayMeal(Long userId){
-        String sql = "SELECT * FROM meal WHERE userId = ? AND DATE_FORMAT(inserttime,'%Y-%m-%d') = CURRENT_DATE and isactive = '1'";
+    public List<Meal> queryUserMealInfoList(Long userId){
+        String sql = "SELECT * FROM meal WHERE userId = ? AND DATE_FORMAT(inserttime,'%Y-%m-%d') >= DATE_SUB(CURRENT_DATE(),INTERVAL 7 DAY) order by inserttime desc";
 
-
-        return  dbHelper.list(sql,Meal.class,userId);
+        return dbHelper.list(sql,Meal.class,userId);
     }
 
-
+    @Override
+    public Laxi queryLaxi(Long userId,String date){
+        String sql = "select * from laxi where userId = ? and DATE_FORMAT(inserttime,'%Y-%m-%d') = ? and isactive = '1'";
+        return dbHelper.queryForObject(sql,Laxi.class,userId,date);
+    }
 
 
 }

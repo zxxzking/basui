@@ -12,8 +12,10 @@ import com.denghb.dbhelper.annotation.Table;
 CREATE TABLE `meal` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `userId` bigint(20) DEFAULT NULL,
-  `type` varchar(10) DEFAULT NULL COMMENT '餐饮类型 0:早餐 1:午餐 2:晚餐',
-  `meal` varchar(200) DEFAULT NULL COMMENT '吃了什么',
+  `breakfast` varchar(200) DEFAULT NULL COMMENT '早餐',
+  `lunch` varchar(200) DEFAULT NULL COMMENT '午餐',
+  `dinner` varchar(200) DEFAULT NULL COMMENT '晚餐',
+  `other` varchar(200) DEFAULT NULL COMMENT '其他',
   `inserttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
   `updatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `isactive` tinyint(4) DEFAULT '1' COMMENT '逻辑删除',
@@ -36,13 +38,21 @@ public class Meal implements java.io.Serializable {
 	@Column(name="userId")
 	private Long userid;
 	
-	/** 餐饮类型 0:早餐 1:午餐 2:晚餐 */
-	@Column(name="type")
-	private String type;
+	/** 早餐 */
+	@Column(name="breakfast")
+	private String breakfast;
 	
-	/** 吃了什么 */
-	@Column(name="meal")
-	private String meal;
+	/** 午餐 */
+	@Column(name="lunch")
+	private String lunch;
+	
+	/** 晚餐 */
+	@Column(name="dinner")
+	private String dinner;
+	
+	/** 其他 */
+	@Column(name="other")
+	private String other;
 	
 	/** 插入时间 */
 	@Column(name="inserttime")
@@ -73,20 +83,36 @@ public class Meal implements java.io.Serializable {
 		this.userid = userid;
 	}
 
-	public String getType(){
-		return type;
+	public String getBreakfast(){
+		return breakfast;
 	}
 
-	public void setType(String type){
-		this.type = type;
+	public void setBreakfast(String breakfast){
+		this.breakfast = breakfast;
 	}
 
-	public String getMeal(){
-		return meal;
+	public String getLunch(){
+		return lunch;
 	}
 
-	public void setMeal(String meal){
-		this.meal = meal;
+	public void setLunch(String lunch){
+		this.lunch = lunch;
+	}
+
+	public String getDinner(){
+		return dinner;
+	}
+
+	public void setDinner(String dinner){
+		this.dinner = dinner;
+	}
+
+	public String getOther(){
+		return other;
+	}
+
+	public void setOther(String other){
+		this.other = other;
 	}
 
 	public java.util.Date getInserttime(){
@@ -124,12 +150,20 @@ public class Meal implements java.io.Serializable {
 		str.append(userid);
 		str.append("\"");
 		str.append(",");
-		str.append("type=\"");
-		str.append(type);
+		str.append("breakfast=\"");
+		str.append(breakfast);
 		str.append("\"");
 		str.append(",");
-		str.append("meal=\"");
-		str.append(meal);
+		str.append("lunch=\"");
+		str.append(lunch);
+		str.append("\"");
+		str.append(",");
+		str.append("dinner=\"");
+		str.append(dinner);
+		str.append("\"");
+		str.append(",");
+		str.append("other=\"");
+		str.append(other);
 		str.append("\"");
 		str.append(",");
 		str.append("inserttime=\"");

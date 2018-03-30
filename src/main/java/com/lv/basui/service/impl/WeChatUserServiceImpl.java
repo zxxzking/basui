@@ -19,6 +19,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -64,13 +65,10 @@ public class WeChatUserServiceImpl implements WeChatUserService {
         if(null == meals){
             meals = new Meal();
             meals.setUserid(Long.valueOf(userId));
-            meals.setMeal(meal);
-            meals.setType(type);
+            setMealInfo(meals,type,meal);
             dbHelper.insert(meals);
         }else{
-            meals.setUserid(Long.valueOf(userId));
-            meals.setMeal(meal);
-            meals.setType(type);
+            setMealInfo(meals,type,meal);
             dbHelper.updateById(meals);
         }
 
@@ -79,26 +77,53 @@ public class WeChatUserServiceImpl implements WeChatUserService {
     }
 
 
+    private void setMealInfo(Meal meals,String type,String meal){
+        switch (type){
+            case "0":
+                meals.setBreakfast(meal);
+                break;
+            case "1":
+                meals.setLunch(meal);
+                break;
+            case "2":
+                meals.setDinner(meal);
+                break;
+            case "3":
+                meals.setOther(meal);
+                break;
+        }
+    }
+
+
     @Override
-    public MealDto queryTodayMeal(String userId){
-        MealDto dto = new MealDto();
-        List<Meal> meals = weChatUserDao.queryTodayMeal(Long.valueOf(userId));
-        for(Meal meal : meals){
-            if("0".equals(meal.getType())){
-                dto.setBreakfast(meal.getMeal());
+    public List<MealDto> queryUserMealInfoList(String userId){
+        List list = new ArrayList<MealDto>();
+        List<Meal> meals = weChatUserDao.queryUserMealInfoList(Long.valueOf(userId));
+        for (Meal meal : meals){
+            MealDto dto = new MealDto();
+            dto.setBreakfast(null == meal.getBreakfast() ? "未记录":meal.getBreakfast());
+            dto.setLunch(null == meal.getLunch() ? "未记录":meal.getLunch());
+            dto.setDinner(null == meal.getDinner() ? "未记录":meal.getDinner());
+            dto.setOther(null == meal.getOther() ? "未记录":meal.getOther());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String date = format.format(meal.getInserttime());
+            dto.setDate(date);
+            Laxi laxi = weChatUserDao.queryLaxi(Long.valueOf(userId), date);
+            if(null == laxi){
+                dto.setLaxiStatus("未记录");
+            }else{
+                if("1".equals(laxi.getIslaxi())){
+                    dto.setLaxiStatus("拉稀了");
+                }else{
+                    dto.setLaxiStatus("没拉稀");
+                }
             }
-            if("1".equals(meal.getType())){
-                dto.setLunch(meal.getMeal());
-            }
-            if("2".equals(meal.getType())){
-                dto.setDinner(meal.getMeal());
-            }
-            if("3".equals(meal.getType())){
-                dto.setOther(meal.getMeal());
-            }
+            list.add(dto);
+
         }
 
-        return dto;
+
+        return list;
     }
 
 
@@ -124,79 +149,6 @@ public class WeChatUserServiceImpl implements WeChatUserService {
 
 
 
-    public static String GetUrl(String inUrl){
-        StringBuilder sb = new StringBuilder();
-        try {
-            URL url =new URL(inUrl);
-            BufferedReader reader =new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String temp="";
-            while((temp=reader.readLine())!=null){
-                //System.out.println(temp);
-                sb.append(temp);
-            }
-        } catch (MalformedURLException e) {
-            // TODO 自动生成的 catch 块
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO 自动生成的 catch 块
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
-    public static List<String> GetMatcher(String str, String url){
-        List<String> result = new ArrayList<String>();
-        Pattern p =Pattern.compile(url);//获取网页地址
-        Matcher m =p.matcher(str);
-        while(m.find()){
-            System.out.println(m.group());
-            result.add(m.group());
-        }
-        return result;
-    }
-
-
-    public static List<String> getMatcher(String s){
-        Pattern p1 =Pattern.compile("<link(([\\s\\S])*?)>");
-        Matcher matcher1 = p1.matcher(s);
-        List<String> list = new ArrayList<>();
-        while (matcher1.find()){
-            // System.out.println(matcher1.start()+"  "+matcher1.end());
-            System.out.println("匹配<link> 匹配到的字符"+matcher1.group());
-            list.add(matcher1.group());
-            s = s.replace(matcher1.group(),"");
-            matcher1 = p1.matcher(s);
-        }
-
-        List<String> list1 = new ArrayList<>();
-
-
-        Pattern p =Pattern.compile("href=\".*.ico\"");
-        Pattern p2 =Pattern.compile("href=\"(([\\s\\S])*?).ico\"");
-        for (int i=0; i<list.size();i++){
-            Matcher matcher = p2.matcher(list.get(i));
-            if(matcher.find()){
-                // System.out.println(matcher.start()+"  "+matcher.end());
-                System.out.println("匹配.ico匹配到的字符"+matcher.group(0));
-                System.out.println(matcher.group(0).replace("href=","").replace("\"",""));
-                list1.add(matcher.group(0).replace("href=","").replace("\"",""));
-            }
-
-        }
-        return list1;
-    }
-
-
-    public static void main(String args[]){
-        String str=GetUrl("https://www.cnblogs.com/xiaxianfei/p/5275601.html");
-        List<String> ouput =getMatcher(str);
-
-        for(String temp:ouput){
-            //System.out.println(ouput.get(0));
-            System.out.println(temp);
-        }
-
-    }
 
 
 

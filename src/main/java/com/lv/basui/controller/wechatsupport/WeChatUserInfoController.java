@@ -6,6 +6,7 @@ import com.lv.basui.dto.ResultBean;
 import com.lv.basui.entity.WeChatInfo;
 import com.lv.basui.service.TokenService;
 import com.lv.basui.service.WeChatUserService;
+import com.lv.basui.utils.GsonUtils;
 import com.lv.basui.utils.HttpToolKit;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import javax.sound.midi.Soundbank;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,14 +32,24 @@ public class WeChatUserInfoController extends BaseController{
 
 
     @PostMapping(value = "initUser")
-    public ResultBean initUser(@RequestParam(value = "openId",required = true)String openId,
-                               @RequestParam(value = "nickName",required = true)String nickName,
-                               @RequestParam(value = "avatarUrl",required = true)String avatarUrl){
+    public ResultBean initUser(@RequestParam(value = "nickName",required = true)String nickName,
+                               @RequestParam(value = "avatarUrl",required = true)String avatarUrl,
+                               @RequestParam(value = "code",required = true)String code){
         ResultBean resultBean = new ResultBean();
+        String url = "https://api.weixin.qq.com/sns/jscode2session";
+        Map params = new HashMap();
+        params.put("appid","wxb5c7e76760f4bd27");
+        params.put("secret","9473de08dd16a85b7738a96af4c611fe");
+        params.put("js_code",code);
+        params.put("grant_type","authorization_code");
+        String s = HttpToolKit.doGet(url, params);
+        Map map = GsonUtils.fromJson(s, Map.class);
+        String openid = map.get("openid").toString();
+
         WeChatInfo info = new WeChatInfo();
         info.setAvatarurl(avatarUrl);
         info.setNickName(nickName);
-        info.setOpenid(openId);
+        info.setOpenid(openid);
 
         String token = weChatUserService.initUser(info);
         resultBean.setData(token);
@@ -80,12 +94,12 @@ public class WeChatUserInfoController extends BaseController{
     }
 
 
-    @GetMapping(value = "todayMealInfo")
-    public ResultBean<MealDto> todayMealInfo(@RequestParam(value = "token",required = true)String token){
-        ResultBean<MealDto> resultBean = new ResultBean();
+    @GetMapping(value = "mealInfoSevenDays")
+    public ResultBean<List<MealDto>> todayMealInfo(@RequestParam(value = "token",required = true)String token){
+        ResultBean<List<MealDto>> resultBean = new ResultBean();
+        List<MealDto> mealDtoList = weChatUserService.queryUserMealInfoList(getUserId(token));
+        resultBean.setData(mealDtoList);
 
-        MealDto dto = weChatUserService.queryTodayMeal(getUserId(token));
-        resultBean.setData(dto);
 
         return resultBean;
     }
@@ -101,4 +115,34 @@ public class WeChatUserInfoController extends BaseController{
 
         return resultBean;
     }
+
+
+    @GetMapping(value = "weixinUserLogin")
+    public ResultBean weixinUserLogin(@RequestParam(value = "code",required = true)String code){
+        ResultBean resultBean = new ResultBean();
+        System.out.println(code);
+        String url = "https://api.weixin.qq.com/sns/jscode2session";
+
+
+
+
+
+        return resultBean;
+    }
+
+    public static void main(String[] args) {
+        String url = "https://api.weixin.qq.com/sns/jscode2session";
+        Map params = new HashMap();
+        params.put("appid","wxb5c7e76760f4bd27");
+        params.put("secret","9473de08dd16a85b7738a96af4c611fe");
+        params.put("js_code","061ml9jj2PfvuF0BCsij2oW9jj2ml9j2");
+        params.put("grant_type","authorization_code");
+        String s = HttpToolKit.doGet(url, params);
+        Map map = GsonUtils.fromJson(s, Map.class);
+        String openid = map.get("openid").toString();
+        System.out.println(openid);
+
+
+    }
+
 }
