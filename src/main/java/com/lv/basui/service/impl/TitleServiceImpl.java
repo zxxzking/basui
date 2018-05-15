@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -45,6 +46,29 @@ public class TitleServiceImpl implements TitleService {
     @Override
     public Title getTitle(int titleId){
         return titleDao.queryTitle(titleId);
+    }
+
+
+    public static void main(String[] args) {
+
+
+        File[] roots = File.listRoots();
+        for (int i =0; i < roots.length; i++) {
+            System.out.println(roots[i].getPath());
+        }
+
+
+
+        /*File file = new File("C://");
+
+        if(file.exists()){
+            File[] files = file.listFiles();
+            for (File file1 : files) {
+                System.out.println(file1.getName());
+            }
+
+
+        }*/
     }
 
 }

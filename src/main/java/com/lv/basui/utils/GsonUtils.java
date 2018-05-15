@@ -42,4 +42,8 @@ public class GsonUtils {
 	public static <T> T fromJson(String json, Class<T> type) {
 		return gson.fromJson(json, type);
 	}
+
+	protected int test(){
+		return 0;
+	}
 }
