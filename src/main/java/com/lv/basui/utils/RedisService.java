@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Controller
+// @Controller
 public class RedisService {
 
-    private  int c = 1;
+    private int c = 1;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
 
 
-    @RequestMapping(value = "/redis/{key}/{value}",method = RequestMethod.GET)
-    @ResponseBody
+    // @RequestMapping(value = "/redis/{key}/{value}",method = RequestMethod.GET)
+    // @ResponseBody
     public String redisTest(@PathVariable String key, @PathVariable String value) {
         String redisValue = stringRedisTemplate.opsForValue().get(key);
         if (StringUtils.isEmpty(redisValue)) {
