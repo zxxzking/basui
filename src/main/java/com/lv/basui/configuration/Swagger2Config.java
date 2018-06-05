@@ -26,8 +26,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("news API")
-                .description("天天猜股宝接口文档</br> 如必须要传入token的接口 请使用此token:</br> +QBtx40NSmBxuq2EuIiM9A7r5Rgmn7aGgN3QtDvDRYnew9dPJH1PoA== ")
+                .title("swagger demo")
+                .description("swagger模板页面 ")
                 .version("1.0")
                 .build();
     }

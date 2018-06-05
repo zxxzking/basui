@@ -85,8 +85,5 @@ public class FileTypeJudge {
         return null;
     }
 
-    public static void main(String[] args) throws Exception{
-        FileType type = FileTypeJudge.getType("C:\\Users\\Administrator\\Desktop\\微信图片_20180402112211.jpg");
-        System.out.println(type.name());
-    }
+
 }

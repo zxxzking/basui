@@ -2,6 +2,7 @@ package com.lv.basui.controller;
 
 import com.lv.basui.entity.Text;
 import com.lv.basui.entity.Title;
+import com.lv.basui.exception.TestException;
 import com.lv.basui.service.TitleService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +56,17 @@ public class MainController {
         List<Title> titles = titleService.listTitle();
         request.setAttribute("titleList",titles);
         return "welcome";
+    }
+
+    @GetMapping(value = "testHandler/{description}")
+    public String testHandler(@PathVariable(value = "description") String description)throws Exception{
+
+        if(1 == 1){
+            throw new TestException(description);
+        }
+
+
+        return "failed";
     }
 
 

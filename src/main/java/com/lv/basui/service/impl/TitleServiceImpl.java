@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -22,6 +22,11 @@ public class TitleServiceImpl implements TitleService {
 
     @Override
     public List<Title> listTitle(){
+
+        Map map = new HashMap();
+
+        Set set = map.entrySet();
+        Iterator<Map.Entry> iterator = set.iterator();
 
         List<Title> list = titleDao.queryTitleList();
 /*

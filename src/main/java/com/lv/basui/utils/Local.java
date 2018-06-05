@@ -1,12 +1,11 @@
 package com.lv.basui.utils;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Local {
 
     public static void main(String[] args) {
-        //资源包基名(包名+myproperties)
+        /*//资源包基名(包名+myproperties)
         String basename = "application.properties";
         //设置语言环境
         Locale cn = Locale.CHINA;//中文
@@ -25,6 +24,22 @@ public class Local {
 
         System.out.println(usernameCN+"--"+passwordCN);
         System.out.println(usernameUS+"--"+passwordUS);
+*/
+
+        Stack stack = new Stack();
+        stack.add("aaa");
+        stack.add("bbb");
+
+        // stack.remove("aaa");
+
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        List list = new ArrayList();
+
+
     }
+
+
+
 }
 

@@ -5,6 +5,10 @@ import com.lv.basui.dto.DirDto;
 import com.lv.basui.dto.FileType;
 import com.lv.basui.dto.ResultBean;
 import com.lv.basui.utils.FileTypeJudge;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +25,15 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@Api(description = "目录server测试")
 @RestController
 @RequestMapping(value = "dirInfo")
 public class WeChatDirController extends BaseController {
 
 
+    @ApiImplicitParams({
+    })
+    @ApiOperation(value = "获取根目录")
     @GetMapping(value = "getBaseDir")
     public ResultBean getBaseDir(){
         ResultBean resultBean = new ResultBean();

@@ -25,23 +25,25 @@ public class ScheduledTest implements SchedulingConfigurer {
     @Autowired
     private JobService jobService;
 
-    // @Scheduled(cron="0 0 8 * * ?")
+    @Scheduled(cron="0 */30 * * * ?")
     public void sendMail(){
         RemainingDays days = jobService.getdays(Constants.DAYS_TYPE.TYPE_1001);
         String content = MessageFormat.format(days.getDescription(),days.getDays());
         MailDto dto = new MailDto();
-        MailUtils utils = new MailUtils();
+
+        content = "铁锤啊 千万别花钱啊 还得去北京啊";
+
         dto.setContent(content);
         dto.setFromPerson("zxxz");
         dto.setToPerson("亲爱的用户");
-        dto.setTargetMail("lvquan@paicaifu.com");
+        dto.setTargetMail("3046108153@qq.com");
         dto.setSubject("新年倒计时");
         try {
             MailUtils.doSendMsg(dto);
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        jobService.updateDaysMsg(days);
+        // jobService.updateDaysMsg(days);
     }
 
     @Override

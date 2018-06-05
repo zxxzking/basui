@@ -102,10 +102,10 @@ public class MailUtils {
 
     public static void main(String[] args) throws Exception{
         MailDto dto = new MailDto();
-        dto.setContent("111");
+        dto.setContent("铁锤啊 千万别花钱啊 还得去北京啊");
         dto.setFromPerson("zxxz");
         dto.setToPerson("亲爱的用户");
-        dto.setTargetMail("lvquan@paicaifu.com");
+        dto.setTargetMail("3046108153@qq.com");
         MailUtils.doSendMsg(dto);
 
     }
