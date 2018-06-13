@@ -25,7 +25,7 @@ public class ScheduledTest implements SchedulingConfigurer {
     @Autowired
     private JobService jobService;
 
-    @Scheduled(cron="0 */30 * * * ?")
+    // @Scheduled(cron="0 */30 * * * ?")
     public void sendMail(){
         RemainingDays days = jobService.getdays(Constants.DAYS_TYPE.TYPE_1001);
         String content = MessageFormat.format(days.getDescription(),days.getDays());

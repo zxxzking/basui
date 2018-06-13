@@ -1,40 +1,26 @@
 package com.lv.basui.utils;
 
-import java.util.*;
 
 public class Local {
 
     public static void main(String[] args) {
-        /*//资源包基名(包名+myproperties)
-        String basename = "application.properties";
-        //设置语言环境
-        Locale cn = Locale.CHINA;//中文
-        Locale us = Locale.US;//英文
-        //根据基名和语言环境加载对应的语言资源文件
-        ResourceBundle myResourcesCN = ResourceBundle.getBundle(basename,cn);//加载myproperties_zh.properties
-        ResourceBundle myResourcesUS = ResourceBundle.getBundle(basename,us);//加载myproperties_en.properties
+       int i = 1000;
+       System.out.println(System.currentTimeMillis());
+       while(i < 10000){
+           int a = i / 1000;
+           int b = (i % 1000)/100;
+           int c = ((i % 1000) % 100) / 10;
+           int d = (((i % 1000) % 100) % 10);
 
-        //加载资源文件后， 程序就可以调用ResourceBundle实例对象的 getString方法获取指定的资源信息名称所对应的值。
-        //String value =  myResources.getString(“key");
-        String usernameCN = myResourcesCN.getString("username");
-        String passwordCN = myResourcesCN.getString("password");
+           if(((d*1000)+(c*100)+(b*10)+a) == (4 * i)){
+               System.out.println(System.currentTimeMillis());
+               System.out.println(i);
+               return;
+           }
+           i++;
 
-        String usernameUS = myResourcesUS.getString("username");
-        String passwordUS = myResourcesUS.getString("password");
+       }
 
-        System.out.println(usernameCN+"--"+passwordCN);
-        System.out.println(usernameUS+"--"+passwordUS);
-*/
-
-        Stack stack = new Stack();
-        stack.add("aaa");
-        stack.add("bbb");
-
-        // stack.remove("aaa");
-
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        List list = new ArrayList();
 
 
     }
